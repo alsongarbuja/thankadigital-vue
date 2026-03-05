@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+:root {
+  --font-heading: 'Quattrocento', serif;
+  --font-body: 'Quattrocento Sans', sans-serif;
+
+  /* Fluid font system */
+  --fs-sm: clamp(0.83rem, 0.12vi + 0.8rem, 0.9rem);
+  --fs-base: clamp(1rem, 0.23vi + 0.94rem, 1.13rem);
+  --fs-h6: clamp(1.2rem, 0.38vi + 1.11rem, 1.41rem);
+  --fs-h5: clamp(1.44rem, 0.58vi + 1.3rem, 1.76rem);
+  --fs-h4: clamp(1.73rem, 0.85vi + 1.51rem, 2.2rem);
+  --fs-h3: clamp(2.07rem, 1.22vi + 1.77rem, 2.75rem);
+  --fs-h2: clamp(2.49rem, 1.72vi + 2.06rem, 3.43rem);
+  --fs-h1: clamp(2.99rem, 2.37vi + 2.39rem, 4.29rem);
+
+  /* Fluid line-height system */
+  --lh-sm: clamp(1.5, 0.05vi + 1.45, 1.6);
+  --lh-base: clamp(1.55, 0.05vi + 1.5, 1.65);
+  --lh-h6: clamp(1.4, 0.05vi + 1.35, 1.5);
+  --lh-h5: clamp(1.35, 0.04vi + 1.31, 1.45);
+  --lh-h4: clamp(1.3, 0.04vi + 1.26, 1.4);
+  --lh-h3: clamp(1.2, 0.03vi + 1.17, 1.3);
+  --lh-h2: clamp(1.15, 0.03vi + 1.12, 1.25);
+  --lh-h1: clamp(1.05, 0.02vi + 1.03, 1.15);
+}
+
+@theme {
+  /* --color-background: #fef5ea; */
+  --color-primary: #BA8AF9;
+  --color-background: #fcfcf7;
+  --color-text: #232323;
+  --color-muted: #708090;
+  --color-disabled: #c3c3c3;
+  --color-accent: #BA8AF9;
+  --color-dashboard-primary: #1D2328;
+  --color-dashboard-bg: #15191C;
+  /*
+  --color-background-dark: #232323;
+  --color-text-dark: #fff;
+  --color-muted-dark: #afafaf;
+  --color-disabled-dark: #444;
+  --color-accent-dark: #8a2be2; */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+}
+
+h4 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+}
+
+h5 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h5);
+  line-height: var(--lh-h5);
+}
+
+h6 {
+  font-family: var(--font-body);
+  font-size: var(--fs-h6);
+  line-height: var(--lh-h6);
+  font-weight: 600;
+}
+
+.container-padding {
+  padding-inline: clamp(1rem, 4vw + .5rem, 4rem);
+}
+
+.no-scroll-bar {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+/* @media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-background-dark);
+    color: var(--color-text-dark);
+  }
+} */
