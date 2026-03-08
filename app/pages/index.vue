@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { projects } from "~/utils/datas/projects";
+import ProjectsSection from "~/components/ProjectSection.vue";
+
 useSeoMeta({
   title: "Thanka Digital",
   description:
@@ -7,5 +10,12 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>Welcome to thanka digital</div>
+  <main>
+    <section class="flex flex-col items-center justify-center h-[70dvh]">
+      <h1>Why Limit?</h1>
+      <h2>When you can go beyond with us.</h2>
+    </section>
+
+    <ProjectsSection :projects="projects" />
+  </main>
 </template>
