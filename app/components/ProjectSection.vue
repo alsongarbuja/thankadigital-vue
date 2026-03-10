@@ -6,68 +6,77 @@ interface Props {
 defineProps<Props>();
 </script>
 
+<style>
+.grain-effect::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY1jY2NDQ0N4eHh0dHR2dnZubm5vbm5nZ2dycnJzc3N4eHh0dHR2dnZ6uPjUAAAAB3RSTlMAAQIDBAUGBwgICAn3elYAAAAJcEhZcwAACxMAAAsTAQCanBgAAAGbSURBVDjHnZZRi8MgEEbjS9S0xpWq7v//ofdrAnu9Xm8v96BwnvE6Mw56v/+p9f0fGvP7f6Xp9Xp9v99v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f6fXq/X6/X693v/A5iM8yN4N99uAAAAAElFTkSuQmCC");
+  background-repeat: repeat;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 0.3s ease;
+}
+
+.group:hover .grain-effect::after {
+  opacity: 0;
+}
+</style>
+
 <template>
-  <section class="py-8">
-    <div class="px-8 mx-auto">
-      <div class="py-8 columns-1 md:columns-2 lg:columns-3">
+  <section class="p-8 mx-auto">
+    <h3>Work speaks more...</h3>
+    <p>Here are some business we have worked with</p>
+    <div>
+      <div class="py-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
         <div
           v-for="project in projects"
           :key="project.slug"
-          :class="[
-            'group break-inside-avoid mb-4 relative overflow-hidden rounded-2xl transition-all duration-300 cursor-pointer',
-          ]"
+          class="group relative h-100 cursor-pointer"
         >
-          <!-- Project Image with Full Coverage -->
-          <img
-            :src="project.thumbnail"
-            :alt="project.name"
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-          />
-
-          <!-- Dark Overlay on Hover -->
           <div
-            class="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          />
-
-          <!-- Project Title and Action Buttons - Appear on Hover -->
-          <div
-            class="absolute inset-0 flex flex-col justify-end items-center gap-4 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            class="relative w-full h-full aspect-4/5 overflow-hidden grain-effect bg-white"
           >
-            <!-- Project Name -->
-            <h3
-              class="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center"
-            >
-              {{ project.name }}
-            </h3>
-
-            <!-- Action Buttons -->
-            <div class="flex flex-wrap justify-center gap-3 w-full">
-              <a
-                v-if="project.liveLink"
-                :href="project.liveLink"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="px-4 sm:px-6 py-2 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors duration-200 text-xs sm:text-sm"
-              >
-                View Live
-              </a>
-              <a
-                v-if="project.githubLink"
-                :href="project.githubLink"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="px-4 sm:px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-500 transition-colors duration-200 text-xs sm:text-sm"
-              >
-                GitHub
-              </a>
-            </div>
+            <NuxtImg
+              :src="project.thumbnail"
+              :alt="project.name"
+              height="200"
+              class="w-full h-full object-cover grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+            />
           </div>
+
+          <p
+            class="absolute z-20 mt-3 opacity-0 text-sm uppercase tracking-widest font-semibold text-gray-500 group-hover:text-black group-hover:opacity-100 group-hover:mt-2 transition-all duration-300"
+          >
+            {{ project.name }}
+          </p>
         </div>
       </div>
+      <!-- <div class="py-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        <div
+          v-for="project in projects"
+          :key="project.slug"
+          class="group relative transition-all duration-300 cursor-pointer h-100"
+        >
+          <div class="w-full h-full overflow-hidden grain-overlay realtive">
+            <NuxtImg
+              :src="project.thumbnail"
+              :alt="project.name"
+              class="w-full h-full z-10 object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+            />
+          </div>
 
-      <!-- Empty State -->
+          <p
+            class="absolute opacity-0 group-hover:opacity-100 z-20 uppercase font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+          >
+            {{ project.name }}
+          </p>
+        </div>
+      </div> -->
+
       <div v-if="projects.length === 0" class="text-center py-32">
-        <p class="text-lg text-gray-400">No projects available yet</p>
+        <p class="text-xl text-gray-400">No projects to show yet</p>
       </div>
     </div>
   </section>
