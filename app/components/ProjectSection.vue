@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  projects: IProjectScheme[];
+  projects: IProjectScheme[] | undefined;
 }
 
 defineProps<Props>();
@@ -75,7 +75,7 @@ defineProps<Props>();
         </div>
       </div> -->
 
-      <div v-if="projects.length === 0" class="text-center py-32">
+      <div v-if="projects && projects.length === 0" class="text-center py-32">
         <p class="text-xl text-gray-400">No projects to show yet</p>
       </div>
     </div>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { projects } from "~/utils/datas/projects";
+// import { projects } from "~/utils/datas/projects";
 import ProjectsSection from "~/components/ProjectSection.vue";
+
+const { data: projects } = await useFetch<IProjectScheme[]>("/api/projects");
 
 useSeoMeta({
   title: "Thanka Digital",

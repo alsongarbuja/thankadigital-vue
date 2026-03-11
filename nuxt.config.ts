@@ -6,6 +6,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["./app/assets/css/main.css"],
 
+  runtimeConfig: {
+    mongodbUri: process.env.MONGODB_URI,
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },
