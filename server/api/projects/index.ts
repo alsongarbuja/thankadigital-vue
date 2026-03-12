@@ -2,7 +2,7 @@ import { Project } from "~~/server/models/Project";
 
 export default defineEventHandler(async (event) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find({ status: "published" });
     return projects;
   } catch (error: any) {
     throw createError({
