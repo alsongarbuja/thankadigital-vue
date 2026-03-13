@@ -30,7 +30,8 @@
 
 @theme {
   /* --color-background: #fef5ea; */
-  --color-primary: #BA8AF9;
+  --color-primary-red: #E8343E;
+  --color-primary-blue: #333D79;
   --color-background: #fcfcf7;
   --color-text: #232323;
   --color-muted: #708090;

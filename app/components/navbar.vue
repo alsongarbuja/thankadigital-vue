@@ -19,7 +19,7 @@ import { navigationLinks } from "~/utils/datas/header";
           v-for="link in navigationLinks"
           :key="link.id"
           :href="link.to"
-          class="group w-fit"
+          class="group w-fit hover:font-bold"
         >
           {{ link.text }}
           <hr
