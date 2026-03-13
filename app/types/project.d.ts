@@ -11,4 +11,6 @@ interface IProjectScheme {
   summary: string;
 
   status: "published" | "draft" | "archieved";
+
+  isShowcase: boolean;
 }
