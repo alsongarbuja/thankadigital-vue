@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
+
 interface Props {
   projects: IProjectScheme[] | undefined;
 }
@@ -25,59 +27,61 @@ defineProps<Props>();
 </style>
 
 <template>
-  <section class="mx-auto">
-    <h3 class="font-bold uppercase">Success Stories</h3>
-    <p>Some solutions we have delivered</p>
-    <div>
-      <div class="py-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
-        <div
-          v-for="project in projects"
-          :key="project.slug"
-          class="group relative h-100 cursor-pointer"
-        >
+  <MaxWidthWrapper>
+    <section class="mx-auto">
+      <h3 class="font-bold uppercase">Success Stories</h3>
+      <p>Some solutions we have delivered</p>
+      <div>
+        <div class="py-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
           <div
-            class="relative w-full h-full aspect-4/5 overflow-hidden grain-effect bg-white"
+            v-for="project in projects"
+            :key="project.slug"
+            class="group relative h-100 cursor-pointer"
           >
-            <NuxtImg
-              :src="project.thumbnail"
-              :alt="project.name"
-              height="200"
-              class="w-full h-full object-cover grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
-            />
-          </div>
+            <div
+              class="relative w-full h-full aspect-4/5 overflow-hidden grain-effect bg-white"
+            >
+              <NuxtImg
+                :src="project.thumbnail"
+                :alt="project.name"
+                height="200"
+                class="w-full h-full object-cover grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ease-in-out"
+              />
+            </div>
 
-          <p
-            class="absolute z-20 mt-3 opacity-0 text-sm uppercase tracking-widest font-semibold text-gray-500 group-hover:text-black group-hover:opacity-100 group-hover:mt-2 transition-all duration-300"
+            <p
+              class="absolute z-20 mt-3 opacity-0 text-sm uppercase tracking-widest font-semibold text-gray-500 group-hover:text-black group-hover:opacity-100 group-hover:mt-2 transition-all duration-300"
+            >
+              {{ project.name }}
+            </p>
+          </div>
+        </div>
+        <!-- <div class="py-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          <div
+            v-for="project in projects"
+            :key="project.slug"
+            class="group relative transition-all duration-300 cursor-pointer h-100"
           >
-            {{ project.name }}
-          </p>
+            <div class="w-full h-full overflow-hidden grain-overlay realtive">
+              <NuxtImg
+                :src="project.thumbnail"
+                :alt="project.name"
+                class="w-full h-full z-10 object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+
+            <p
+              class="absolute opacity-0 group-hover:opacity-100 z-20 uppercase font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+            >
+              {{ project.name }}
+            </p>
+          </div>
+        </div> -->
+
+        <div v-if="projects && projects.length === 0" class="text-center py-32">
+          <p class="text-xl text-gray-400">No projects to show yet</p>
         </div>
       </div>
-      <!-- <div class="py-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
-        <div
-          v-for="project in projects"
-          :key="project.slug"
-          class="group relative transition-all duration-300 cursor-pointer h-100"
-        >
-          <div class="w-full h-full overflow-hidden grain-overlay realtive">
-            <NuxtImg
-              :src="project.thumbnail"
-              :alt="project.name"
-              class="w-full h-full z-10 object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-            />
-          </div>
-
-          <p
-            class="absolute opacity-0 group-hover:opacity-100 z-20 uppercase font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
-          >
-            {{ project.name }}
-          </p>
-        </div>
-      </div> -->
-
-      <div v-if="projects && projects.length === 0" class="text-center py-32">
-        <p class="text-xl text-gray-400">No projects to show yet</p>
-      </div>
-    </div>
-  </section>
+    </section>
+  </MaxWidthWrapper>
 </template>

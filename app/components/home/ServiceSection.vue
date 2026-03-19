@@ -1,57 +1,61 @@
 <template>
-  <section class="py-20 overflow-hidden">
-    <div class="container">
-      <h2 class="mb-6 font-bold uppercase tracking-tighter text-black">
-        Services
-      </h2>
+  <MaxWidthWrapper>
+    <section class="py-20 overflow-hidden">
+      <div class="container">
+        <h2 class="mb-6 font-bold uppercase tracking-tighter text-black">
+          Services
+        </h2>
 
-      <div class="flex flex-col">
-        <div
-          v-for="(service, index) in services"
-          :key="index"
-          class="group relative border-t py-10 border-black/10 transition-all duration-500 px-4"
-          :class="[index % 2 !== 0 ? 'ml-0 md:ml-40' : '']"
-        >
-          <span class="block text-xs font-black uppercase tracking-widest">
-            [{{ index + 1 < 10 ? "0" + (index + 1) : index + 1 }}]
-          </span>
-
+        <div class="flex flex-col">
           <div
-            class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-8"
+            v-for="(service, index) in services"
+            :key="index"
+            class="group relative border-t py-10 border-black/10 transition-all duration-500 px-4"
+            :class="[index % 2 !== 0 ? 'ml-0 md:ml-40' : '']"
           >
-            <h3
-              class="text-6xl md:text-8xl font-medium tracking-tight leading-none group-hover:text-gray-400 transition-all"
-            >
-              {{ service.title }}
-            </h3>
+            <span class="block text-xs font-black uppercase tracking-widest">
+              [{{ index + 1 < 10 ? "0" + (index + 1) : index + 1 }}]
+            </span>
 
             <div
-              class="text-sm uppercase font-bold leading-tight text-primary-red w-32"
+              class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-8"
             >
-              {{ service.tags }}
-            </div>
+              <h3
+                class="text-6xl md:text-8xl font-medium tracking-tight leading-none group-hover:text-gray-400 transition-all"
+              >
+                {{ service.title }}
+              </h3>
 
-            <p
-              class="md:max-w-md text-lg leading-snug text-gray-800 font-medium"
-            >
-              {{ service.desc }}
-            </p>
-
-            <div
-              class="hidden lg:block absolute left-20 top-1/2 -translate-y-1/2 w-48 h-32 bg-gray-300 opacity-0 group-hover:opacity-100 transition-all duration-500 rotate-12 group-hover:rotate-3 overflow-hidden shadow-2xl"
-            >
               <div
-                class="w-full h-full bg-linear-to-br from-gray-400 to-black"
-              ></div>
+                class="text-sm uppercase font-bold leading-tight text-primary-red w-32"
+              >
+                {{ service.tags }}
+              </div>
+
+              <p
+                class="md:max-w-md text-lg leading-snug text-gray-800 font-medium"
+              >
+                {{ service.desc }}
+              </p>
+
+              <div
+                class="hidden lg:block absolute left-20 top-1/2 -translate-y-1/2 w-48 h-32 bg-gray-300 opacity-0 group-hover:opacity-100 transition-all duration-500 rotate-12 group-hover:rotate-3 overflow-hidden shadow-2xl"
+              >
+                <div
+                  class="w-full h-full bg-linear-to-br from-gray-400 to-black"
+                ></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </MaxWidthWrapper>
 </template>
 
 <script setup>
+import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
+
 const services = [
   {
     title: "Branding",

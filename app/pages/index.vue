@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import ConnectSection from "~/components/home/ConnectSection.vue";
 import HeroSection from "~/components/home/HeroSection.vue";
 import ProjectsSection from "~/components/home/ProjectSection.vue";
 import ServiceSection from "~/components/home/ServiceSection.vue";
+import TechSection from "~/components/home/TechSection.vue";
 
 const { data: projects } = await useFetch<IProjectScheme[]>("/api/projects");
 
@@ -16,4 +18,6 @@ useSeoMeta({
   <HeroSection />
   <ProjectsSection :projects="projects" />
   <ServiceSection />
+  <TechSection />
+  <ConnectSection />
 </template>
