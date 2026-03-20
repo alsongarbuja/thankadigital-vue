@@ -91,7 +91,7 @@ import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
         </div>
       </div>
 
-      <div
+      <!-- <div
         class="mt-24 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4"
       >
         <div class="flex items-center gap-2">
@@ -112,7 +112,7 @@ import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
         >
           Back to top ↑
         </button>
-      </div>
+      </div> -->
     </MaxWidthWrapper>
   </section>
 </template>
