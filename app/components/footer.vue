@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 </script>
 
 <template>
-  <MaxWidthWrapper>
-    <footer
-      class="relative bg-[#F9F9F7] border-t border-black/10 pt-20 pb-10 overflow-hidden"
-    >
+  <footer
+    class="relative bg-[#F9F9F7] border-t border-black/10 pt-20 pb-10 overflow-hidden"
+  >
+    <MaxWidthWrapper>
       <div
         class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
         style="
@@ -136,6 +140,6 @@ import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
           </button>
         </div>
       </div>
-    </footer>
-  </MaxWidthWrapper>
+    </MaxWidthWrapper>
+  </footer>
 </template>
