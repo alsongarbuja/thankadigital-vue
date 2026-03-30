@@ -10,6 +10,10 @@ export default defineNuxtConfig({
     mongodbUri: process.env.MONGODB_URI,
   },
 
+  image: {
+    domains: ["https://alkyhora.sirv.com/"],
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },
