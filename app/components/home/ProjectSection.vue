@@ -30,7 +30,7 @@ defineProps<Props>();
   <MaxWidthWrapper>
     <section class="mx-auto">
       <h3 class="font-bold uppercase">Success Stories</h3>
-      <p>Some solutions we have delivered</p>
+      <p>Few solutions we have delivered</p>
       <div>
         <div class="py-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
           <div
