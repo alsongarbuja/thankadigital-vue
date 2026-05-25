@@ -22,7 +22,7 @@ const scrollToTop = () => {
       ></div>
 
       <div
-        class="absolute -bottom-10 left-0 w-full pointer-events-none select-none opacity-[0.3] z-0"
+        class="absolute -bottom-10 left-15 w-full pointer-events-none select-none opacity-[0.3] z-0"
       >
         <h2
           class="text-[25vw] font-black uppercase tracking-tighter leading-none text-transparent stroke-black"
@@ -121,7 +121,7 @@ const scrollToTop = () => {
             <span
               class="font-mono text-sm uppercase tracking-[0.3em] text-gray-400"
             >
-              Core System Online // Build v1.0.4
+              Core System Online
             </span>
           </div>
 

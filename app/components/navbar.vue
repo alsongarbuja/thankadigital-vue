@@ -3,7 +3,7 @@ import { navigationLinks } from "~/utils/datas/header";
 </script>
 
 <template>
-  <header class="py-4 px-8">
+  <header class="py-4 max-w-[95%] mx-auto">
     <nav class="flex items-center justify-between">
       <NuxtLink href="/" aria-label="Thanka Digital Logo">
         <NuxtImg
