@@ -22,7 +22,7 @@ const isActive = (to: string) => {
 <template>
   <header class="sticky top-4 z-50 px-4 md:px-0">
     <nav
-      class="max-w-5xl mx-auto flex items-center justify-between gap-4 px-4 py-3 rounded-full bg-white/80 backdrop-blur-md shadow-md shadow-black/5 border border-black/5"
+      class="max-w-[90%] mx-auto flex items-center justify-between gap-4 px-4 py-3 rounded-full bg-white/80 backdrop-blur-md shadow-md shadow-black/5 border border-black/5"
     >
       <NuxtLink
         href="/"

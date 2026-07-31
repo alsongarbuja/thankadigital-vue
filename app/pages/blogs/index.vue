@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { ref } from "vue";
+import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
+
 useSeoMeta({
   title: "Thanka Digital - Blogs",
   description: "Read interesting blogs related to tech industry",
 });
-
-import { ref } from "vue";
 
 const blogs = ref([
   {
@@ -26,107 +27,136 @@ const blogs = ref([
     tags: ["Development", "Nuxt 3", "Web"],
   },
 ]);
+
+const pattern = [
+  {
+    col: "lg:col-span-7",
+    aspect: "aspect-[4/3]",
+    title: "text-2xl md:text-3xl",
+  },
+  { col: "lg:col-span-5", aspect: "aspect-square", title: "text-xl" },
+  { col: "lg:col-span-5", aspect: "aspect-square", title: "text-xl" },
+  {
+    col: "lg:col-span-7",
+    aspect: "aspect-[4/3]",
+    title: "text-2xl md:text-3xl",
+  },
+];
+
+const getLayout = (index: number) => pattern[index % pattern.length];
 </script>
 
 <template>
-  <main
-    class="bg-[#F9F9F7] min-h-screen pt-32 pb-24 px-6 md:px-16 overflow-hidden relative"
-  >
+  <main class="min-h-screen pt-12 pb-24">
     <div
-      class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
-      style="
-        background-image:
-          linear-gradient(#000 1px, transparent 1px),
-          linear-gradient(90deg, #000 1px, transparent 1px);
-        background-size: 80px 80px;
-      "
+      class="absolute -top-24 -z-10 -right-24 w-95 h-95 rounded-full bg-primary-blue/10 blur-3xl pointer-events-none"
     ></div>
-
-    <section class="relative z-10">
-      <div class="mb-20">
-        <h1
-          class="text-[10vw] font-black uppercase tracking-tighter leading-[0.8] text-black"
+    <div
+      class="absolute top-96 -z-10 -left-24 w-70 h-70 rounded-full bg-primary-red/10 blur-3xl pointer-events-none"
+    ></div>
+    <MaxWidthWrapper>
+      <section class="relative z-10">
+        <div
+          class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14"
         >
-          The
-          <br />
-          Archive.
-        </h1>
-      </div>
+          <div>
+            <div
+              class="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-primary-blue/5 border border-primary-blue/10"
+            >
+              <span class="w-2 h-2 rounded-full bg-primary-red"></span>
+              <span
+                class="text-xs font-semibold uppercase tracking-wide text-primary-blue"
+              >
+                Insights
+              </span>
+            </div>
+            <h1
+              class="text-4xl md:text-6xl font-bold leading-[1.05] text-black"
+            >
+              The Archive
+              <span class="text-primary-red">.</span>
+            </h1>
+          </div>
+          <p
+            class="max-w-sm text-sm md:text-base text-black/60 leading-relaxed"
+          >
+            Notes on engineering, design, and the tech shaping how we build.
+          </p>
+        </div>
 
-      <div
-        v-if="blogs.length === 0"
-        class="border-t border-black/10 pt-40 flex flex-col items-center justify-center relative min-h-[40vh]"
-      >
-        <h2
-          class="text-4xl md:text-7xl font-black uppercase tracking-tighter text-black/10 absolute top-1/2 -translate-y-1/2 select-none"
+        <!-- Empty state -->
+        <div
+          v-if="blogs.length === 0"
+          class="text-center py-24 rounded-2xl bg-black/2 border border-dashed border-black/10"
         >
-          Archive Empty
-        </h2>
-        <p class="font-mono text-sm uppercase tracking-[0.5em] text-gray-400">
-          System awaiting new data inputs
-        </p>
-      </div>
+          <p class="text-base text-black/50 mb-3">Archive is empty for now.</p>
+          <p
+            class="text-xs font-semibold uppercase tracking-widest text-primary-blue"
+          >
+            New entries coming soon
+          </p>
+        </div>
 
-      <div v-else class="flex flex-col gap-32">
-        <article
-          v-for="(blog, index) in blogs"
-          :key="blog.id"
-          class="group grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border-t border-black/10 pt-16"
-        >
-          <div
-            class="lg:col-span-5 relative aspect-16/10 overflow-hidden border border-black/5"
+        <!-- Blog grid -->
+        <div v-else class="grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-16">
+          <NuxtLink
+            v-for="(blog, index) in blogs"
+            :key="blog.id"
+            :to="`/blogs/${blog.slug}`"
+            class="group"
+            :class="getLayout(index)?.col"
           >
             <div
-              class="absolute inset-0 z-20 opacity-20 grain-overlay pointer-events-none"
-            ></div>
-            <NuxtImg
-              :src="blog.image"
-              class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
-            />
-          </div>
-
-          <div class="lg:col-span-7 flex flex-col justify-between h-full">
-            <div>
-              <div class="flex flex-wrap gap-3 mb-6">
+              class="relative w-full overflow-hidden rounded-2xl bg-black/5"
+              :class="getLayout(index)?.aspect"
+            >
+              <NuxtImg
+                :src="blog.image"
+                :alt="blog.title"
+                class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+              />
+              <div
+                class="absolute inset-0 bg-linear-to-t from-black/50 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              ></div>
+              <div
+                class="absolute top-4 left-4 flex flex-wrap gap-2 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500"
+              >
                 <span
                   v-for="tag in blog.tags"
                   :key="tag"
-                  class="font-mono text-[9px] uppercase tracking-widest border border-black/10 px-3 py-1 rounded-full group-hover:border-red-600 transition-colors"
+                  class="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-[10px] font-semibold uppercase tracking-wide text-primary-blue"
                 >
                   {{ tag }}
                 </span>
               </div>
+            </div>
 
+            <div class="pt-5">
               <h2
-                class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-6 group-hover:text-red-600 transition-colors"
+                class="font-bold text-black leading-tight mb-2 group-hover:text-primary-red transition-colors duration-300"
+                :class="getLayout(index)?.title"
               >
                 {{ blog.title }}
               </h2>
 
-              <p
-                class="text-xl md:text-2xl font-light italic text-gray-500 leading-relaxed mb-10 max-w-2xl"
-              >
+              <p class="text-sm text-black/50 leading-relaxed mb-4 max-w-lg">
                 {{ blog.summary }}
               </p>
-            </div>
 
-            <NuxtLink
-              :to="`/blogs/${blog.slug}`"
-              class="inline-flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.4em] text-black group-hover:translate-x-2 transition-transform"
-            >
-              Read Entry
-              <span class="text-lg">→</span>
-            </NuxtLink>
-          </div>
-        </article>
-      </div>
-    </section>
+              <span
+                class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-black/70"
+              >
+                Read Entry
+                <span
+                  class="group-hover:translate-x-1 transition-transform duration-300"
+                >
+                  &rarr;
+                </span>
+              </span>
+            </div>
+          </NuxtLink>
+        </div>
+      </section>
+    </MaxWidthWrapper>
   </main>
 </template>
-
-<style scoped>
-.grain-overlay {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY1jY2NDQ0N4eHh0dHR2dnZubm5vbm5nZ2dycnJzc3N4eHh0dHR2dnZ6uPjUAAAAB3RSTlMAAQIDBAUGBwgICAn3elYAAAAJcEhZcwAACxMAAAsTAQCanBgAAAGbSURBVDjHnZZRi8MgEEbjS9S0xpWq7v//ofdrAnu9Xm8v96BwnvE6Mw56v/+p9f0fGvP7f6Xp9Xp9v99v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f59vV5v7/f7+329Xm/v9/v7/f6fXq/X6/X693v/A5iM8yN4N99uAAAAAElFTkSuQmCC");
-  background-repeat: repeat;
-}
-</style>

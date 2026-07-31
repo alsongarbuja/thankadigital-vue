@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div class="relative overflow-x-hidden">
     <Navbar />
-    <main>
-      <slot />
-    </main>
+    <slot />
     <Footer />
   </div>
 </template>
