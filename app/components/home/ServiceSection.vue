@@ -1,58 +1,3 @@
-<template>
-  <MaxWidthWrapper>
-    <section class="py-20 overflow-hidden">
-      <div class="container">
-        <h2 class="mb-6 font-bold uppercase tracking-tighter text-black">
-          Services
-        </h2>
-
-        <div class="flex flex-col">
-          <div
-            v-for="(service, index) in services"
-            :key="index"
-            class="group relative border-t py-10 border-black/10 transition-all duration-500 px-4"
-            :class="[index % 2 !== 0 ? 'ml-0 md:ml-40' : '']"
-          >
-            <span class="block text-xs font-black uppercase tracking-widest">
-              [{{ index + 1 < 10 ? "0" + (index + 1) : index + 1 }}]
-            </span>
-
-            <div
-              class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-8"
-            >
-              <h3
-                class="text-6xl md:text-8xl font-medium tracking-tight leading-none group-hover:text-gray-400 transition-all"
-              >
-                {{ service.title }}
-              </h3>
-
-              <div
-                class="text-sm uppercase font-bold leading-tight text-primary-red w-32"
-              >
-                {{ service.tags }}
-              </div>
-
-              <p
-                class="md:max-w-md text-lg leading-snug text-gray-800 font-medium"
-              >
-                {{ service.desc }}
-              </p>
-
-              <div
-                class="hidden lg:block absolute left-20 top-1/2 -translate-y-1/2 w-48 h-32 bg-gray-300 opacity-0 group-hover:opacity-100 transition-all duration-500 rotate-12 group-hover:rotate-3 overflow-hidden shadow-2xl"
-              >
-                <div
-                  class="w-full h-full bg-linear-to-br from-gray-400 to-black"
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </MaxWidthWrapper>
-</template>
-
 <script setup>
 import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
 
@@ -61,31 +6,88 @@ const services = [
     title: "Branding",
     tags: "Look & Feel, Strategy, Voice",
     desc: "Crafting engaging brand identities that resonate with your target audience, from logo design to complete experience.",
+    shape: "circle",
   },
   {
     title: "Website",
     tags: "UX/UI, Full-Stack, Nuxt.js",
     desc: "Performance-first web solutions built with modern frameworks for speed, security, and conversion.",
+    shape: "square",
   },
   {
     title: "Mobile App",
     tags: "iOS, Android, Cross-Platform",
     desc: "Native-feel applications designed to provide seamless user interaction across all mobile touchpoints.",
+    shape: "circle",
   },
   {
     title: "SEO",
     tags: "Technical, On-Page, Growth",
     desc: "Data-driven strategies to ensure your brand ranks where it matters most, driving organic engagement.",
+    shape: "square",
   },
   {
     title: "Design & Graphics",
     tags: "Motion, Asset Creation",
     desc: "Visual storytelling through high-impact motion graphics and clean, modern aesthetic assets.",
+    shape: "circle",
   },
   {
     title: "Digital Marketing",
     tags: "Ads, Content, Strategy",
     desc: "Connecting fans and brands through unforgettable moments and targeted digital campaigns.",
+    shape: "square",
   },
 ];
 </script>
+
+<template>
+  <MaxWidthWrapper>
+    <section class="py-20 md:py-28">
+      <div class="mb-14">
+        <div
+          class="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-primary-blue/5 border border-primary-blue/10"
+        >
+          <span class="w-2 h-2 rounded-full bg-primary-red"></span>
+          <span
+            class="text-xs font-semibold uppercase tracking-wide text-primary-blue"
+          >
+            What We Do
+          </span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold text-black">Services</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          v-for="service in services"
+          :key="service.title"
+          class="group rounded-2xl bg-white p-8 flex flex-col gap-4 shadow-md shadow-black/5 border border-black/5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+        >
+          <div
+            class="w-14 h-14 flex items-center justify-center bg-primary-blue/5 group-hover:bg-primary-red/10 transition-colors duration-300"
+            :class="service.shape === 'circle' ? 'rounded-full' : 'rounded-xl'"
+          >
+            <span
+              class="w-6 h-6 rounded-full bg-primary-blue group-hover:bg-primary-red transition-colors duration-300"
+            ></span>
+          </div>
+
+          <h3 class="text-xl font-bold text-black">
+            {{ service.title }}
+          </h3>
+
+          <p class="text-sm leading-relaxed text-black/60">
+            {{ service.desc }}
+          </p>
+
+          <span
+            class="mt-auto inline-block w-fit px-2.5 py-1 rounded-full bg-black/4 text-[10px] font-semibold uppercase tracking-wide text-black/50"
+          >
+            {{ service.tags }}
+          </span>
+        </div>
+      </div>
+    </section>
+  </MaxWidthWrapper>
+</template>
