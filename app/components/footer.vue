@@ -7,104 +7,197 @@ const scrollToTop = () => {
 </script>
 
 <template>
-  <footer
-    class="relative bg-[#F9F9F7] border-t border-black/10 pt-20 pb-10 overflow-hidden"
-  >
-    <MaxWidthWrapper>
+  <MaxWidthWrapper>
+    <section class="py-6 md:py-10" id="connect">
       <div
-        class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
-        style="
-          background-image:
-            linear-gradient(#000 1px, transparent 1px),
-            linear-gradient(90deg, #000 1px, transparent 1px);
-          background-size: 80px 80px;
-        "
-      ></div>
-
-      <div
-        class="absolute -bottom-10 left-15 w-full pointer-events-none select-none opacity-[0.3] z-0"
+        class="relative rounded-3xl bg-black/2 border border-black/5 px-6 py-16 md:px-16 md:py-20 overflow-hidden"
       >
-        <h2
-          class="text-[25vw] font-black uppercase tracking-tighter leading-none text-transparent stroke-black"
-          style="-webkit-text-stroke: 2px black"
-        >
-          THANKA DIGITAL
-        </h2>
-      </div>
-
-      <div class="relative z-10">
         <div
-          class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-24"
+          class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-primary-blue/10 blur-3xl pointer-events-none"
+        ></div>
+        <div
+          class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-primary-red/10 blur-3xl pointer-events-none"
+        ></div>
+
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-7 flex flex-col justify-between gap-14">
+            <div>
+              <div
+                class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-primary-blue/5 border border-primary-blue/10"
+              >
+                <span class="w-2 h-2 rounded-full bg-primary-red"></span>
+                <span
+                  class="text-xs font-semibold uppercase tracking-wide text-primary-blue"
+                >
+                  Get In Touch
+                </span>
+              </div>
+              <h2
+                class="text-5xl md:text-6xl font-bold leading-[1.05] text-black"
+              >
+                Let's Talk
+                <span class="text-primary-red">.</span>
+              </h2>
+            </div>
+
+            <div class="max-w-md">
+              <label
+                class="text-xs font-semibold uppercase tracking-wide text-black/40 mb-3 block"
+              >
+                Quick Inquiry
+              </label>
+              <div
+                class="flex items-center gap-2 bg-white rounded-full shadow-md shadow-black/5 border border-black/5 pl-6 pr-2 py-2"
+              >
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  class="bg-transparent w-full text-sm outline-none placeholder:text-black/30"
+                />
+                <button
+                  class="w-10 h-10 rounded-full bg-primary-blue text-white flex items-center justify-center hover:bg-primary-red transition-colors duration-300 shrink-0 cursor-pointer"
+                >
+                  &rarr;
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex flex-col justify-end gap-6">
+            <div class="grid grid-cols-2 gap-4">
+              <div
+                class="rounded-2xl bg-white shadow-sm shadow-black/5 border border-black/5 p-6"
+              >
+                <h4
+                  class="text-[10px] font-semibold uppercase tracking-wide text-black/40 mb-3"
+                >
+                  Location
+                </h4>
+                <p class="text-sm font-bold text-black">Pokhara, Nepal</p>
+              </div>
+              <div
+                class="rounded-2xl bg-white shadow-sm shadow-black/5 border border-black/5 p-6"
+              >
+                <h4
+                  class="text-[10px] font-semibold uppercase tracking-wide text-black/40 mb-3"
+                >
+                  Inquiries
+                </h4>
+                <a
+                  href="mailto:thankadigital@gmail.com"
+                  class="text-sm font-bold text-black hover:text-primary-red transition-colors"
+                >
+                  thankadigital@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <a
+                v-for="link in [
+                  'LinkedIn',
+                  'GitHub',
+                  'X / Twitter',
+                  'Instagram',
+                ]"
+                :key="link"
+                href="#"
+                class="group flex justify-between items-center px-6 py-4 rounded-2xl bg-white shadow-sm shadow-black/5 border border-black/5 hover:shadow-md hover:border-primary-blue/20 transition-all duration-300"
+              >
+                <span class="text-base font-bold text-black">
+                  {{ link }}
+                </span>
+                <span
+                  class="w-8 h-8 rounded-full bg-black/4 flex items-center justify-center text-sm text-primary-red group-hover:bg-primary-red group-hover:text-white transition-colors duration-300"
+                >
+                  &#8599;
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="relative z-10 mt-16 pt-12 border-t border-black/10 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6"
         >
-          <div class="col-span-2 lg:col-span-2">
-            <NuxtImg
-              src="icons/thanka_logo.svg"
-              class="h-8 w-8 mb-6 grayscale"
-            />
-            <p
-              class="max-w-xs text-sm text-gray-500 uppercase tracking-widest leading-relaxed"
+          <div
+            class="col-span-2 lg:col-span-2 rounded-2xl bg-white shadow-sm shadow-black/5 border border-black/5 p-6 flex flex-col gap-4"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-primary-blue/5 flex items-center justify-center"
             >
+              <NuxtImg src="icons/thanka_logo.svg" class="h-5 w-5" />
+            </div>
+            <p class="text-sm text-black/50 leading-relaxed">
               Engineering digital frontiers through adaptive architecture and
               technical precision.
             </p>
           </div>
 
-          <div class="flex flex-col gap-4">
+          <div
+            class="rounded-2xl bg-white shadow-sm shadow-black/5 border border-black/5 p-6 flex flex-col gap-4"
+          >
             <span
-              class="font-mono text-[10px] uppercase tracking-[0.4em] text-gray-400"
+              class="text-[10px] font-semibold uppercase tracking-wide text-black/40"
             >
               Directory
             </span>
-            <nav class="flex flex-col gap-2">
+            <nav class="flex flex-col gap-3">
               <a
                 v-for="link in ['Projects', 'Careers', 'About', 'Blogs']"
                 :key="link"
                 href="#"
-                class="text-xs font-bold uppercase tracking-widest hover:text-red-600 transition-colors"
+                class="text-sm font-bold text-black hover:text-primary-red transition-colors w-fit"
               >
                 {{ link }}
               </a>
             </nav>
           </div>
 
-          <div class="flex flex-col gap-4">
+          <div
+            class="rounded-2xl bg-white shadow-sm shadow-black/5 border border-black/5 p-6 flex flex-col gap-4"
+          >
             <span
-              class="font-mono text-[10px] uppercase tracking-[0.4em] text-gray-400"
+              class="text-[10px] font-semibold uppercase tracking-wide text-black/40"
             >
               Externals
             </span>
-            <nav class="flex flex-col gap-2">
+            <nav class="flex flex-col gap-3">
               <a
                 v-for="link in ['Dev', 'Youtube', 'Upwork']"
                 :key="link"
                 href="#"
-                class="text-xs font-bold uppercase tracking-widest hover:text-red-600 transition-colors"
+                class="text-sm font-bold text-black hover:text-primary-red transition-colors w-fit"
               >
                 {{ link }}
               </a>
             </nav>
           </div>
 
-          <div class="flex flex-col gap-4">
+          <div
+            class="rounded-2xl bg-primary-blue/5 border border-primary-blue/10 p-6 flex flex-col gap-4"
+          >
             <span
-              class="font-mono text-[10px] uppercase tracking-[0.4em] text-gray-400"
+              class="text-[10px] font-semibold uppercase tracking-wide text-black/40"
             >
               Status
             </span>
-            <div class="flex flex-col gap-2">
-              <div class="flex items-center gap-2">
-                <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                <span class="text-[11px] font-bold uppercase tracking-widest">
+            <div class="flex flex-col gap-3">
+              <div
+                class="inline-flex items-center gap-2 w-fit px-3 py-1.5 rounded-full bg-white shadow-sm shadow-black/5"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                <span
+                  class="text-[11px] font-bold uppercase tracking-wide text-black"
+                >
                   Accepting Projects
                 </span>
               </div>
-              <p
-                class="text-sm text-gray-400 uppercase tracking-wider leading-tight"
-              >
-                Currently focused on:
+              <p class="text-sm text-black/50 leading-snug">
+                Currently focused on
                 <br />
                 <span class="text-black font-semibold">
-                  AI Integration & Nuxt 3
+                  AI Integration &amp; Nuxt 3
                 </span>
               </p>
             </div>
@@ -112,34 +205,32 @@ const scrollToTop = () => {
         </div>
 
         <div
-          class="pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-6"
+          class="relative z-10 mt-8 pt-8 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-4"
         >
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
             <div
-              class="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse"
+              class="w-2 h-2 bg-primary-red rounded-full animate-pulse"
             ></div>
-            <span
-              class="font-mono text-sm uppercase tracking-[0.3em] text-gray-400"
-            >
+            <span class="text-xs uppercase tracking-wide text-black/40">
               Core System Online
             </span>
           </div>
 
-          <p class="font-mono text-sm uppercase tracking-widest text-gray-300">
-            © 2026 Thanka Digital.
+          <p class="text-xs uppercase tracking-wide text-black/30">
+            &copy; 2026 Thanka Digital. All rights reserved.
           </p>
 
           <button
             @click="scrollToTop"
-            class="group flex items-center gap-2 font-mono text-sm uppercase tracking-widest"
+            class="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-black/50 hover:text-primary-red transition-colors cursor-pointer"
           >
-            Back to Top
-            <span class="group-hover:-translate-y-1 transition-transform">
-              ↑
+            Back to top
+            <span class="group-hover:-translate-y-0.5 transition-transform">
+              &uarr;
             </span>
           </button>
         </div>
       </div>
-    </MaxWidthWrapper>
-  </footer>
+    </section>
+  </MaxWidthWrapper>
 </template>

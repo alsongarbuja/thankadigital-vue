@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ConnectSection from "~/components/home/ConnectSection.vue";
 import HeroSection from "~/components/home/HeroSection.vue";
 import ProjectsSection from "~/components/home/ProjectSection.vue";
 import ServiceSection from "~/components/home/ServiceSection.vue";
@@ -19,5 +18,4 @@ useSeoMeta({
   <ProjectsSection :projects="projects" />
   <ServiceSection />
   <TechSection />
-  <ConnectSection />
 </template>
