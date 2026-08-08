@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { navigationLinks } from "~/utils/datas/header";
 
 const route = useRoute();
 const isOpen = ref(false);
+const isScrolled = ref(false);
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value;
@@ -17,12 +18,33 @@ const isActive = (to: string) => {
   if (to === "/") return route.path === "/";
   return route.path === to || route.path.startsWith(`${to}/`);
 };
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 24;
+};
+
+onMounted(() => {
+  handleScroll();
+  window.addEventListener("scroll", handleScroll, { passive: true });
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <template>
-  <header class="sticky top-4 z-50 px-4 md:px-0">
+  <header
+    class="fixed inset-x-0 z-50 transition-all duration-500 ease-out"
+    :class="isScrolled ? 'top-0 px-0' : 'top-4 px-4 md:px-0'"
+  >
     <nav
-      class="max-w-[90%] mx-auto flex items-center justify-between gap-4 px-4 py-3 rounded-full bg-white/80 backdrop-blur-md shadow-md shadow-black/5 border border-black/5"
+      class="mx-auto flex items-center justify-between gap-4 py-3 border transition-all duration-500 ease-out origin-top"
+      :class="
+        isScrolled
+          ? 'max-w-none w-full px-6 md:px-10 rounded-none bg-white/80 backdrop-blur-xl shadow-lg shadow-black/10 border-black/5'
+          : 'max-w-5xl px-4 rounded-full bg-white/70 shadow-none border-black/5'
+      "
     >
       <NuxtLink
         href="/"
@@ -58,7 +80,6 @@ const isActive = (to: string) => {
         </NuxtLink>
       </div>
 
-      <!-- Desktop CTA -->
       <NuxtLink
         href="#connect"
         class="hidden md:inline-flex items-center gap-2 pl-5 pr-2 py-2 rounded-full bg-primary-blue shadow-sm shadow-primary-blue/20 hover:shadow-md hover:shadow-primary-blue/30 transition-all duration-300 shrink-0"

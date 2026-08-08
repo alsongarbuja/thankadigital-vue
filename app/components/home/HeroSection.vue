@@ -3,7 +3,7 @@ import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
 
 const stats = [
   { value: "10+", label: "Projects Delivered" },
-  { value: "6+", label: "Happy Clients" },
+  { value: "7+", label: "Happy Clients" },
   { value: "2+", label: "Years Building" },
 ];
 </script>
@@ -11,14 +11,15 @@ const stats = [
 <template>
   <MaxWidthWrapper>
     <section
-      class="relative min-h-[90vh] flex flex-col justify-center py-24 overflow-hidden"
+      class="min-h-[90vh] flex flex-col justify-center py-24 overflow-hidden"
     >
-      <!-- <div
-        class="absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-[#333D79]/10 blur-3xl pointer-events-none"
+      <!-- Decorative blurred blobs -->
+      <div
+        class="absolute -top-24 -right-24 w-105 h-105 rounded-full bg-primary-blue/10 blur-3xl pointer-events-none"
       ></div>
       <div
-        class="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-[#E8343E]/10 blur-3xl pointer-events-none"
-      ></div> -->
+        class="absolute bottom-0 left-0 w-75 h-75 rounded-full bg-primary-red/10 blur-3xl pointer-events-none"
+      ></div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- Text column -->
@@ -64,26 +65,51 @@ const stats = [
           </button>
         </div>
 
-        <!-- Illustration card column -->
+        <!-- Illustration column: tech studio composition -->
         <div
-          class="hidden lg:flex lg:col-span-5 relative h-105 items-center justify-center"
+          class="hidden lg:flex lg:col-span-5 relative h-110 items-center justify-center"
         >
           <div
-            class="absolute inset-6 rounded-3xl bg-linear-to-br from-primary-blue to-primary-blue/80 shadow-2xl shadow-primary-blue/30"
+            class="absolute inset-6 rounded-3xl bg-linear-to-br from-primary-blue to-primary-blue/80 rotate-3"
           ></div>
+
+          <!-- Editor window mockup -->
           <div
-            class="absolute top-8 right-8 w-28 h-28 rounded-2xl bg-white shadow-xl flex items-center justify-center rotate-6"
+            class="relative w-67.5 rounded-2xl bg-white shadow-xl -rotate-2 overflow-hidden"
           >
-            <span class="w-10 h-10 rounded-full bg-primary-red"></span>
-          </div>
-          <div
-            class="absolute bottom-10 left-2 w-32 h-20 rounded-2xl bg-white shadow-xl flex items-center justify-center -rotate-3"
-          >
-            <span
-              class="text-xs font-semibold uppercase tracking-wide text-primary-blue"
+            <div
+              class="flex items-center gap-1.5 px-4 py-3 border-b border-black/5"
             >
-              Est. Thanka
-            </span>
+              <span class="w-2.5 h-2.5 rounded-full bg-black/10"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-black/10"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-primary-red/60"></span>
+            </div>
+            <div class="p-5 flex flex-col gap-3">
+              <div class="h-2 w-3/5 rounded-full bg-primary-blue/20"></div>
+              <div class="h-2 w-4/5 rounded-full bg-black/10"></div>
+              <div class="h-2 w-2/5 rounded-full bg-primary-red/30"></div>
+              <div class="h-2 w-3/4 rounded-full bg-black/10"></div>
+              <div class="h-2 w-1/2 rounded-full bg-primary-blue/20"></div>
+              <div class="h-2 w-2/3 rounded-full bg-black/10"></div>
+            </div>
+          </div>
+
+          <!-- Floating code chip -->
+          <div
+            class="absolute top-6 right-2 w-16 h-16 rounded-2xl bg-white shadow-xl flex items-center justify-center rotate-6"
+          >
+            <span class="text-lg font-bold text-primary-red">&lt;/&gt;</span>
+          </div>
+
+          <!-- Floating activity card -->
+          <div
+            class="absolute bottom-6 left-0 rounded-2xl bg-white shadow-xl px-4 py-4 flex items-end gap-1.5 rotate-2"
+          >
+            <span class="w-2 rounded-full bg-primary-blue/30 h-3.5"></span>
+            <span class="w-2 rounded-full bg-primary-blue/50 h-6"></span>
+            <span class="w-2 rounded-full bg-primary-red h-8"></span>
+            <span class="w-2 rounded-full bg-primary-blue/40 h-5"></span>
+            <span class="w-2 rounded-full bg-primary-blue/60 h-7"></span>
           </div>
         </div>
       </div>

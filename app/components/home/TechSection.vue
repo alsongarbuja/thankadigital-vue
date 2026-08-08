@@ -5,7 +5,16 @@ const stacks = [
   {
     label: "Frontend",
     title: "The Interface",
-    items: ["Nuxt.js", "Vue 3", "Tailwind", "TypeScript", "Next.js"],
+    items: [
+      "Nuxt.js",
+      "Vue 3",
+      "Tailwind",
+      "TypeScript",
+      "Next.js",
+      "Wordpress",
+      "React",
+      "Webflow",
+    ],
   },
   {
     label: "Backend",
