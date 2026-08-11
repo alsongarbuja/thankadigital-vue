@@ -43,7 +43,7 @@ const team = [
 </script>
 
 <template>
-  <main class="min-h-screen pt-12 pb-24">
+  <main class="min-h-screen pt-28 pb-24">
     <MaxWidthWrapper>
       <section class="relative mb-32 md:mb-44">
         <div class="relative z-10 max-w-3xl mx-auto text-center">

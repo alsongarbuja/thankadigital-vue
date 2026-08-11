@@ -93,7 +93,7 @@ const jobs = ref([
 </script>
 
 <template>
-  <main class="min-h-screen pt-12 pb-24 relative">
+  <main class="min-h-screen pt-28 pb-24 relative">
     <MaxWidthWrapper>
       <div
         class="absolute -top-24 -right-24 w-95 h-95 rounded-full bg-primary-blue/10 blur-3xl pointer-events-none"
