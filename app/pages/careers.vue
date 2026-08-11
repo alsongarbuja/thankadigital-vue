@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
 
@@ -9,12 +9,12 @@ useSeoMeta({
 });
 
 const showModal = ref(false);
-const activeJob = ref(null);
+const activeJob = ref<ICareerScheme | null>(null);
 const resumeName = ref("");
 const coverLetterName = ref("");
 const emailError = ref(false);
 
-const handleFile = (event, type) => {
+const handleFile = (event, type: "resume" | "cover") => {
   const file = event.target.files[0];
   if (file) {
     if (type === "resume") resumeName.value = file.name;
@@ -22,7 +22,7 @@ const handleFile = (event, type) => {
   }
 };
 
-const removeFile = (type) => {
+const removeFile = (type: "resume" | "cover") => {
   if (type === "resume") resumeName.value = "";
   if (type === "cover") coverLetterName.value = "";
 };
@@ -45,51 +45,57 @@ const submitApplication = () => {
   showModal.value = false;
 };
 
-const openApplyModal = (job) => {
+const openApplyModal = (job: ICareerScheme) => {
   activeJob.value = job;
   showModal.value = true;
 };
 
-const jobs = ref([
-  {
-    id: 1,
-    title: "Senior Systems Architect",
-    salary: "$140k — $180k",
-    type: "Hybrid",
-    experience: "5+ Years",
-    requirements: [
-      "Nuxt 3 Expert",
-      "Deep Node.js Knowledge",
-      "Experience with PostgreSQL & Redis",
-      "Cloud Architecture (AWS/GCP)",
-    ],
-    responsibilities: [
-      "Lead engineering sprints",
-      "Design scalable microservices",
-      "Mentor junior developers",
-      "Code review & optimization",
-    ],
-  },
-  {
-    id: 2,
-    title: "AI Research Engineer",
-    salary: "$130k — $170k",
-    type: "Remote",
-    experience: "3+ Years",
-    requirements: [
-      "Python / PyTorch Proficiency",
-      "Strong RL/DQN Background",
-      "Understanding of Large Scale Games",
-      "Masters in CS or equivalent",
-    ],
-    responsibilities: [
-      "Develop adaptive adversaries",
-      "Neural network optimization",
-      "Research paper analysis",
-      "Implementation of RL algorithms",
-    ],
-  },
+const jobs = ref<ICareerScheme[]>([
+  // {
+  //   id: 1,
+  //   title: "Senior Systems Architect",
+  //   salary_min: 140000,
+  //   salary_max: 180000,
+  //   type: "hybrid",
+  //   experience: "5+ Years",
+  //   status: "published",
+  //   requirements: [
+  //     "Nuxt 3 Expert",
+  //     "Deep Node.js Knowledge",
+  //     "Experience with PostgreSQL & Redis",
+  //     "Cloud Architecture (AWS/GCP)",
+  //   ],
+  //   responsibilities: [
+  //     "Lead engineering sprints",
+  //     "Design scalable microservices",
+  //     "Mentor junior developers",
+  //     "Code review & optimization",
+  //   ],
+  // },
+  // {
+  //   id: 2,
+  //   title: "AI Research Engineer",
+  //   salary_min: 130000,
+  //   salary_max: 170000,
+  //   type: "remote",
+  //   experience: "3+ Years",
+  //   status: "published",
+  //   requirements: [
+  //     "Python / PyTorch Proficiency",
+  //     "Strong RL/DQN Background",
+  //     "Understanding of Large Scale Games",
+  //     "Masters in CS or equivalent",
+  //   ],
+  //   responsibilities: [
+  //     "Develop adaptive adversaries",
+  //     "Neural network optimization",
+  //     "Research paper analysis",
+  //     "Implementation of RL algorithms",
+  //   ],
+  // },
 ]);
+
+const { data: careers } = await useFetch<ICareerScheme[]>("/api/careers");
 </script>
 
 <template>
@@ -134,7 +140,7 @@ const jobs = ref([
 
         <!-- Empty state -->
         <div
-          v-if="jobs.length === 0"
+          v-if="careers?.length === 0"
           class="text-center py-24 rounded-2xl bg-black/2 border border-dashed border-black/10"
         >
           <p class="text-base text-black/50 mb-3">
@@ -150,7 +156,7 @@ const jobs = ref([
         <!-- Job list -->
         <div v-else class="flex flex-col gap-4">
           <div
-            v-for="job in jobs"
+            v-for="job in careers"
             :key="job.id"
             class="group rounded-2xl bg-white p-6 md:p-8 shadow-sm shadow-black/5 border border-black/5 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
           >
@@ -180,7 +186,9 @@ const jobs = ref([
                   >
                     Comp
                   </p>
-                  <p class="text-sm font-bold text-black">{{ job.salary }}</p>
+                  <p class="text-sm font-bold text-black">
+                    {{ job.salary_min }} - {{ job.salary_max }}
+                  </p>
                 </div>
                 <div class="hidden lg:block">
                   <p
