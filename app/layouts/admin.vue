@@ -6,11 +6,11 @@ const isSidebarOpen = ref(false);
 
 const navItems = [
   { label: "Dashboard", to: "/app/admin", icon: "grid" },
-  { label: "Projects", to: "/app/admin/projects", icon: "layers" },
-  { label: "Blogs", to: "/app/admin/blogs", icon: "document" },
-  { label: "Careers", to: "/app/admin/careers", icon: "users" },
-  { label: "Messages", to: "/app/admin/messages", icon: "mail" },
-  { label: "Settings", to: "/app/admin/settings", icon: "gear" },
+  { label: "Projects", to: "/app/projects", icon: "layers" },
+  { label: "Blogs", to: "/app/blogs", icon: "document" },
+  { label: "Careers", to: "/app/careers", icon: "users" },
+  { label: "Messages", to: "/app/messages", icon: "mail" },
+  { label: "Settings", to: "/app/settings", icon: "gear" },
 ];
 
 const isActive = (to: string) => {
