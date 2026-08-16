@@ -1,19 +1,9 @@
-import { Project } from "~~/server/models/Project";
+import { getAllProjects } from "~~/server/services/project.service";
 
 /**
  * Event handler to handle the /api/projects GET API
  * Returns projects list that is published
  * */
 export default defineEventHandler(async (event) => {
-  try {
-    const projects = await Project.find({
-      status: "published",
-    });
-    return projects;
-  } catch (error: any) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: error.message,
-    });
-  }
+  return getAllProjects();
 });

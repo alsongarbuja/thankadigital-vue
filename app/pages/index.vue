@@ -3,8 +3,9 @@ import HeroSection from "~/components/home/HeroSection.vue";
 import ProjectsSection from "~/components/home/ProjectSection.vue";
 import ServiceSection from "~/components/home/ServiceSection.vue";
 import TechSection from "~/components/home/TechSection.vue";
+import type { IProjectScheme } from "~~/types/project";
 
-const { data: projects } = await useFetch<IProjectScheme[]>("/api/projects");
+const { data: projects } = await useFetch<IProjectScheme[]>("/api/projects/showcase");
 
 useSeoMeta({
   title: "Thanka Digital",

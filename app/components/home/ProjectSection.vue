@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
+import type { IProjectScheme } from "~~/types/project";
 
 interface Props {
   projects: IProjectScheme[] | undefined;
@@ -11,17 +12,13 @@ defineProps<Props>();
 <template>
   <MaxWidthWrapper>
     <section class="py-20 md:py-28">
-      <div
-        class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14"
-      >
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
         <div>
           <div
             class="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-primary-blue/5 border border-primary-blue/10"
           >
             <span class="w-2 h-2 rounded-full bg-primary-red"></span>
-            <span
-              class="text-xs font-semibold uppercase tracking-wide text-primary-blue"
-            >
+            <span class="text-xs font-semibold uppercase tracking-wide text-primary-blue">
               Selected Work
             </span>
           </div>
@@ -40,11 +37,7 @@ defineProps<Props>();
           v-for="(project, index) in projects"
           :key="project.slug"
           class="w-full"
-          :class="
-            index === 0
-              ? 'sm:col-span-2 lg:col-span-2 aspect-video'
-              : 'aspect-4/3'
-          "
+          :class="index === 0 ? 'sm:col-span-2 lg:col-span-2 aspect-video' : 'aspect-4/3'"
         >
           <ProjectCard
             :slug="project.slug"
@@ -68,9 +61,7 @@ defineProps<Props>();
         <button
           class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-black/10 bg-white shadow-sm hover:shadow-md hover:border-primary-blue/30 transition-all duration-300 cursor-pointer"
         >
-          <span class="text-sm font-semibold text-black">
-            View All Projects
-          </span>
+          <span class="text-sm font-semibold text-black"> View All Projects </span>
           <span class="text-sm text-primary-red">&rarr;</span>
         </button>
       </div>
