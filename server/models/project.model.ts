@@ -35,8 +35,6 @@ const ProjectSchema = new Schema<IProjectDocument>(
   { timestamps: true },
 );
 
-// `models.Project ||` avoids Mongoose's "OverwriteModelError" that happens
-// when this file gets re-evaluated on every dev-server hot reload.
 export const ProjectModel: Model<IProjectDocument> =
   (models.Project as Model<IProjectDocument>) ||
   model<IProjectDocument>("Project", ProjectSchema);

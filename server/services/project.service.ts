@@ -42,8 +42,6 @@ export const updateProjectBySlug = async (
 ) => {
   await connectDB();
 
-  console.log(payload.slug, slug);
-
   if (payload.slug && payload.slug !== slug) {
     const clashing = await ProjectModel.findOne({ slug: payload.slug }).lean();
     if (clashing) {

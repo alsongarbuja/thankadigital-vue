@@ -1,12 +1,24 @@
-import { Schema, model } from "mongoose";
+import mongoose, { type Document, type Model } from "mongoose";
+import type { ICareerScheme } from "~~/types/career";
 
-const careerSchema = new Schema(
+const { Schema, model, models } = mongoose;
+
+export interface ICareerDocument extends ICareerScheme, Document {
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const careerSchema = new Schema<ICareerDocument>(
   {
     title: {
       type: String,
       required: true,
     },
     salary_min: {
+      type: Number,
+      required: true,
+    },
+    salary_max: {
       type: Number,
       required: true,
     },
@@ -36,4 +48,6 @@ const careerSchema = new Schema(
   { timestamps: true },
 );
 
-export const Career = model("Career", careerSchema);
+export const CareerModel: Model<ICareerDocument> =
+  (models.Project as Model<ICareerDocument>) ||
+  model<ICareerDocument>("Career", careerSchema);

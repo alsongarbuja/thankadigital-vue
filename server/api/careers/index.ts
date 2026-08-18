@@ -1,19 +1,9 @@
-import { Career } from "~~/server/models/Career";
+import { getAllCareers } from "~~/server/services/career.service";
 
 /**
  * Event handler to handle the /api/careers GET API
  * Returns careers list that is published
  * */
 export default defineEventHandler(async (event) => {
-  try {
-    const careers = await Career.find({
-      status: "published",
-    });
-    return careers;
-  } catch (error: any) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: error.message,
-    });
-  }
+  return getAllCareers();
 });

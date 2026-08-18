@@ -1,5 +1,4 @@
-interface ICareerScheme {
-  id: number;
+export type ICareerScheme = {
   title: string;
   salary_min: number;
   salary_max: number;
@@ -8,4 +7,4 @@ interface ICareerScheme {
   requirements: string[];
   responsibilities: string[];
   status: "published" | "draft" | "archieved";
-}
+};
