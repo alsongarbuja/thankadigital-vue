@@ -34,7 +34,7 @@ const socialLinks = [
 
 <template>
   <MaxWidthWrapper>
-    <section class="py-6 md:py-10">
+    <section class="py-6 md:py-10" id="connect">
       <div
         class="relative rounded-3xl bg-black/2 border border-black/5 px-5 py-12 sm:px-8 sm:py-14 md:px-12 md:py-16 lg:px-16 lg:py-20 overflow-hidden"
       >
@@ -48,7 +48,9 @@ const socialLinks = [
         <div
           class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-12"
         >
-          <div class="md:col-span-7 flex flex-col justify-between gap-10 md:gap-14">
+          <div
+            class="md:col-span-7 flex flex-col justify-between gap-10 md:gap-14"
+          >
             <div>
               <div
                 class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-primary-blue/5 border border-primary-blue/10"
@@ -117,7 +119,9 @@ const socialLinks = [
                 >
                   Location
                 </h6>
-                <p class="text-sm font-bold text-black truncate">Pokhara, Nepal</p>
+                <p class="text-sm font-bold text-black truncate">
+                  Pokhara, Nepal
+                </p>
               </div>
               <div
                 class="rounded-2xl bg-white shadow-sm shadow-black/5 border border-black/5 p-5 sm:p-6 min-w-0"
@@ -170,15 +174,17 @@ const socialLinks = [
               <NuxtImg src="icons/thanka_logo.svg" class="h-5 w-5" />
             </div>
             <p class="text-sm text-black/50 leading-relaxed">
-              Engineering digital frontiers through adaptive architecture and technical
-              precision.
+              Engineering digital frontiers through adaptive architecture and
+              technical precision.
             </p>
           </div>
 
           <div
             class="rounded-2xl bg-white shadow-sm shadow-black/5 border border-black/5 p-5 sm:p-6 flex flex-col gap-4 min-w-0"
           >
-            <span class="text-[10px] font-semibold uppercase tracking-wide text-black/40">
+            <span
+              class="text-[10px] font-semibold uppercase tracking-wide text-black/40"
+            >
               Directory
             </span>
             <nav class="flex flex-col gap-3">
@@ -196,7 +202,9 @@ const socialLinks = [
           <div
             class="rounded-2xl bg-white shadow-sm shadow-black/5 border border-black/5 p-5 sm:p-6 flex flex-col gap-4 min-w-0"
           >
-            <span class="text-[10px] font-semibold uppercase tracking-wide text-black/40">
+            <span
+              class="text-[10px] font-semibold uppercase tracking-wide text-black/40"
+            >
               Externals
             </span>
             <nav class="flex flex-col gap-3">
@@ -216,14 +224,18 @@ const socialLinks = [
           <div
             class="rounded-2xl bg-primary-blue/5 border border-primary-blue/10 p-5 sm:p-6 flex flex-col gap-4 min-w-0 col-span-1 sm:col-span-2 md:col-span-1"
           >
-            <span class="text-[10px] font-semibold uppercase tracking-wide text-black/40">
+            <span
+              class="text-[10px] font-semibold uppercase tracking-wide text-black/40"
+            >
               Status
             </span>
             <div class="flex flex-col gap-3">
               <div
                 class="inline-flex items-center gap-2 w-fit px-3 py-1.5 rounded-full bg-white shadow-sm shadow-black/5"
               >
-                <span class="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0"></span>
+                <span
+                  class="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0"
+                ></span>
                 <span
                   class="text-[11px] font-bold uppercase tracking-wide text-black whitespace-nowrap"
                 >
@@ -245,8 +257,12 @@ const socialLinks = [
           class="relative z-10 mt-8 pt-8 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left"
         >
           <div class="flex items-center gap-2">
-            <div class="w-2 h-2 bg-primary-red rounded-full animate-pulse shrink-0"></div>
-            <span class="text-xs uppercase tracking-wide text-black/40 whitespace-nowrap">
+            <div
+              class="w-2 h-2 bg-primary-red rounded-full animate-pulse shrink-0"
+            ></div>
+            <span
+              class="text-xs uppercase tracking-wide text-black/40 whitespace-nowrap"
+            >
               Core System Online
             </span>
           </div>

@@ -49,20 +49,21 @@ const stats = [
             beyond &mdash; from brand to launch, and everything in between.
           </p>
 
-          <button
+          <NuxtLink
+            to="/projects"
             class="group inline-flex items-center gap-3 mt-10 pl-6 pr-2 py-2 rounded-full bg-primary-blue shadow-lg shadow-primary-blue/20 hover:shadow-xl hover:shadow-primary-blue/30 transition-all duration-300 cursor-pointer"
           >
             <span
               class="text-sm font-semibold uppercase tracking-wide text-white"
             >
-              Start a Project
+              View Projects
             </span>
             <div
               class="w-10 h-10 rounded-full bg-white text-primary-blue flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1"
             >
               <span class="text-lg">&rarr;</span>
             </div>
-          </button>
+          </NuxtLink>
         </div>
 
         <!-- Illustration column: tech studio composition -->

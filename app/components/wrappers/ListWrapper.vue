@@ -127,26 +127,9 @@ const confirmDelete = async () => {
               +
             </span>
           </NuxtLink>
-
-          <button
-            v-else
-            type="button"
-            @click="emit('create')"
-            class="group inline-flex items-center gap-2 pl-5 pr-2 py-2 rounded-full bg-primary-blue text-white shadow-sm shadow-primary-blue/20 hover:bg-primary-red hover:shadow-md hover:shadow-primary-red/20 transition-all duration-300 cursor-pointer"
-          >
-            <span class="text-sm font-semibold whitespace-nowrap">
-              New {{ resourceLabel || title }}
-            </span>
-            <span
-              class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-xs group-hover:rotate-90 transition-transform duration-300"
-            >
-              +
-            </span>
-          </button>
         </div>
       </div>
 
-      <!-- Toolbar: search + resource-specific filters -->
       <div
         v-if="showSearch || $slots.toolbar"
         class="flex flex-col sm:flex-row sm:items-center gap-3"
