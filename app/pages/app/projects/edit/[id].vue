@@ -9,15 +9,17 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Dashboard - New Project",
+  title: "Dashboard - Edit Project",
 });
 
 const route = useRoute();
 const slug = computed(() => route.params.id);
 
-const { data: existingProject, pending, refresh } = await useFetch<IProjectScheme>(
-  `/api/projects/${slug.value}`
-);
+const {
+  data: existingProject,
+  pending,
+  refresh,
+} = await useFetch<IProjectScheme>(`/api/projects/${slug.value}`);
 
 const form = ref<IProjectScheme>({
   name: "",
@@ -39,7 +41,7 @@ watch(
       form.value = { ...project, tags: [...project.tags] };
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const isSubmitting = ref(false);
