@@ -9,7 +9,9 @@ const navItems = [
   { label: "Projects", to: "/app/projects", icon: "layers" },
   { label: "Blogs", to: "/app/blogs", icon: "document" },
   { label: "Careers", to: "/app/careers", icon: "users" },
-  { label: "Messages", to: "/app/messages", icon: "mail" },
+  { label: "Teams", to: "/app/teams", icon: "users" },
+  { label: "Users", to: "/app/users", icon: "users" },
+  // { label: "Messages", to: "/app/messages", icon: "mail" },
   { label: "Settings", to: "/app/settings", icon: "gear" },
 ];
 
@@ -36,7 +38,9 @@ const closeSidebar = () => {
         </div>
         <div class="min-w-0">
           <p class="text-sm font-bold text-black truncate">Thanka Digital</p>
-          <p class="text-[10px] uppercase tracking-wide text-black/40">Admin Panel</p>
+          <p class="text-[10px] uppercase tracking-wide text-black/40">
+            Admin Panel
+          </p>
         </div>
       </NuxtLink>
 
@@ -92,7 +96,9 @@ const closeSidebar = () => {
               stroke-linejoin="round"
               class="w-4.5 h-4.5"
             >
-              <path d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" />
+              <path
+                d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"
+              />
               <path d="M14 3v4h4" />
               <line x1="9" y1="13" x2="15" y2="13" />
               <line x1="9" y1="17" x2="13" y2="17" />
@@ -205,7 +211,11 @@ const closeSidebar = () => {
             class="relative w-72 max-w-[80vw] h-full bg-white px-6 py-8 flex flex-col shadow-2xl"
           >
             <div class="flex items-center justify-between mb-10">
-              <NuxtLink to="/admin" class="flex items-center gap-3" @click="closeSidebar">
+              <NuxtLink
+                to="/admin"
+                class="flex items-center gap-3"
+                @click="closeSidebar"
+              >
                 <div
                   class="w-9 h-9 rounded-full bg-primary-blue/5 flex items-center justify-center shrink-0"
                 >
