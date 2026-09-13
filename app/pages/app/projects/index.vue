@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import ListWrapper from "~/components/wrappers/ListWrapper.vue";
-import type { IProjectDocument } from "~~/server/models/project.model";
+import type { IProjectScheme } from "~~/types/project";
 
 definePageMeta({
   layout: false,
@@ -17,7 +17,7 @@ const {
   data: projects,
   pending,
   refresh,
-} = await useFetch<IProjectDocument[]>("/api/projects", { default: () => [] });
+} = await useFetch<IProjectScheme[]>("/api/projects", { default: () => [] });
 
 const filtered = computed(() =>
   projects.value.filter((p) =>
@@ -25,7 +25,7 @@ const filtered = computed(() =>
   ),
 );
 
-const deleteTarget = ref<IProjectDocument | null>(null);
+const deleteTarget = ref<IProjectScheme | null>(null);
 
 const resolveDeleteUrl = (project: Record<string, any>) =>
   `/api/projects/${project.slug}/delete`;

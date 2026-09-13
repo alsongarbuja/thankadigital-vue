@@ -1,7 +1,8 @@
 export type IUserScheme = {
+  _id: string;
   name: string;
   email: string;
-  passPin: number;
+  passPin: string;
   teamId: string;
   avatarUrl: string;
   isLoggable: boolean;

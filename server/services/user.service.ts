@@ -15,6 +15,11 @@ export const getUserById = async (id: string) => {
   return UserModel.findById(id).lean();
 };
 
+export const findUserByEmail = async (email: string) => {
+  await connectDB();
+  return UserModel.findOne({ email }).lean();
+};
+
 export const createUser = async (payload: CreateUserInput) => {
   await connectDB();
   return UserModel.create(payload);

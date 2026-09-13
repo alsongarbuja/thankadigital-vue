@@ -19,7 +19,7 @@ const userSchema = new Schema<IUserDocument>(
       required: true,
     },
     passPin: {
-      type: Number,
+      type: String,
       required: true,
     },
     avatarUrl: {

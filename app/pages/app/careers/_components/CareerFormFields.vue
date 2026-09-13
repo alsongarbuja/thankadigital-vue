@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ICareerScheme } from "~~/types/career";
 
-const form = defineModel<ICareerScheme>({ required: true });
+const form = defineModel<Omit<ICareerScheme, "_id">>({ required: true });
 
 const typeOptions: { value: ICareerScheme["type"]; label: string }[] = [
   { value: "on-site", label: "On-Site" },

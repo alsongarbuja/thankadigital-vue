@@ -1,18 +1,32 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const route = useRoute();
 const isSidebarOpen = ref(false);
+const { user, clear: clearSession } = useUserSession();
+
+const userInitials = computed(() => {
+  if (!user.value?.name) return "?";
+  return user.value.name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+});
+
+const handleLogout = async () => {
+  await $fetch("/api/logout", { method: "POST" });
+  await clearSession();
+  navigateTo("/login");
+};
 
 const navItems = [
-  { label: "Dashboard", to: "/app/admin", icon: "grid" },
+  { label: "Dashboard", to: "/admin", icon: "grid" },
   { label: "Projects", to: "/app/projects", icon: "layers" },
-  { label: "Blogs", to: "/app/blogs", icon: "document" },
-  { label: "Careers", to: "/app/careers", icon: "users" },
-  { label: "Teams", to: "/app/teams", icon: "users" },
-  { label: "Users", to: "/app/users", icon: "users" },
-  // { label: "Messages", to: "/app/messages", icon: "mail" },
-  { label: "Settings", to: "/app/settings", icon: "gear" },
+  { label: "Blogs", to: "/admin/blogs", icon: "document" },
+  { label: "Careers", to: "/admin/careers", icon: "users" },
+  { label: "Messages", to: "/admin/messages", icon: "mail" },
+  { label: "Settings", to: "/admin/settings", icon: "gear" },
 ];
 
 const isActive = (to: string) => {
@@ -26,11 +40,11 @@ const closeSidebar = () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-black/1.5 flex">
+  <div class="min-h-screen bg-black/1.5 lg:flex">
     <aside
       class="hidden lg:flex w-72 shrink-0 flex-col h-screen sticky top-0 border-r border-black/5 bg-white px-6 py-8"
     >
-      <NuxtLink to="/app/admin" class="flex items-center gap-3 px-2 mb-10">
+      <NuxtLink to="/admin" class="flex items-center gap-3 px-2 mb-10">
         <div
           class="w-9 h-9 rounded-full bg-primary-blue/5 flex items-center justify-center shrink-0"
         >
@@ -158,15 +172,20 @@ const closeSidebar = () => {
           <span
             class="w-9 h-9 rounded-full bg-primary-blue text-white flex items-center justify-center text-xs font-bold shrink-0"
           >
-            AG
+            {{ userInitials }}
           </span>
           <div class="min-w-0">
-            <p class="text-xs font-bold text-black truncate">Alson Garbuja</p>
-            <p class="text-[10px] text-black/40 truncate">Administrator</p>
+            <p class="text-xs font-bold text-black truncate">
+              {{ user?.name ?? "..." }}
+            </p>
+            <p class="text-[10px] text-black/40 truncate">
+              {{ user?.email ?? "" }}
+            </p>
           </div>
         </div>
 
         <button
+          @click="handleLogout"
           class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-black/50 hover:text-primary-red hover:bg-primary-red/5 transition-all duration-300 cursor-pointer"
         >
           <svg
@@ -247,6 +266,26 @@ const closeSidebar = () => {
                 {{ item.label }}
               </NuxtLink>
             </nav>
+
+            <button
+              @click="handleLogout"
+              class="mt-auto flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-black/50 hover:text-primary-red hover:bg-primary-red/5 transition-all duration-300 cursor-pointer"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-4.5 h-4.5"
+              >
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              Log Out
+            </button>
           </aside>
         </Transition>
       </div>
@@ -326,7 +365,7 @@ const closeSidebar = () => {
           <span
             class="w-9 h-9 rounded-full bg-primary-blue text-white flex items-center justify-center text-xs font-bold shrink-0"
           >
-            AG
+            {{ userInitials }}
           </span>
         </div>
       </header>

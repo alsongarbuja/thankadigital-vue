@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ITeamScheme } from "~~/types/team";
 
-const form = defineModel<ITeamScheme>({ required: true });
+const form = defineModel<Omit<ITeamScheme, "_id">>({ required: true });
 </script>
 
 <template>

@@ -17,5 +17,5 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  modules: ["@nuxt/a11y", "@nuxt/image", "@nuxt/ui"],
+  modules: ["@nuxt/a11y", "@nuxt/image", "@nuxt/ui", "nuxt-auth-utils"],
 });

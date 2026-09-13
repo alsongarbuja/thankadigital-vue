@@ -21,11 +21,11 @@ const {
   refresh,
 } = await useFetch<IUserScheme>(`/api/users/${id.value}`);
 
-const form = ref<IUserScheme>({
+const form = ref<Omit<IUserScheme, "_id">>({
   name: "",
   avatarUrl: "",
   email: "",
-  passPin: 0,
+  passPin: "",
   isLoggable: false,
   teamId: "",
 });

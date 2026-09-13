@@ -21,7 +21,7 @@ const {
   refresh,
 } = await useFetch<ITeamScheme>(`/api/teams/${id.value}`);
 
-const form = ref<ITeamScheme>({
+const form = ref<Omit<ITeamScheme, "_id">>({
   name: "",
   description: "",
 });

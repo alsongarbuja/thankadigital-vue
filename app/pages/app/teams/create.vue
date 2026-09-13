@@ -12,7 +12,7 @@ useSeoMeta({
   title: "Dashboard - New Team",
 });
 
-const form = ref<ITeamScheme>({
+const form = ref<Omit<ITeamScheme, "_id">>({
   name: "",
   description: "",
 });

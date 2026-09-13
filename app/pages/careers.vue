@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
+import type { ICareerScheme } from "~~/types/career";
 
 useSeoMeta({
   title: "Thanka Digital - Careers",
@@ -50,52 +51,9 @@ const openApplyModal = (job: ICareerScheme) => {
   showModal.value = true;
 };
 
-const jobs = ref<ICareerScheme[]>([
-  // {
-  //   id: 1,
-  //   title: "Senior Systems Architect",
-  //   salary_min: 140000,
-  //   salary_max: 180000,
-  //   type: "hybrid",
-  //   experience: "5+ Years",
-  //   status: "published",
-  //   requirements: [
-  //     "Nuxt 3 Expert",
-  //     "Deep Node.js Knowledge",
-  //     "Experience with PostgreSQL & Redis",
-  //     "Cloud Architecture (AWS/GCP)",
-  //   ],
-  //   responsibilities: [
-  //     "Lead engineering sprints",
-  //     "Design scalable microservices",
-  //     "Mentor junior developers",
-  //     "Code review & optimization",
-  //   ],
-  // },
-  // {
-  //   id: 2,
-  //   title: "AI Research Engineer",
-  //   salary_min: 130000,
-  //   salary_max: 170000,
-  //   type: "remote",
-  //   experience: "3+ Years",
-  //   status: "published",
-  //   requirements: [
-  //     "Python / PyTorch Proficiency",
-  //     "Strong RL/DQN Background",
-  //     "Understanding of Large Scale Games",
-  //     "Masters in CS or equivalent",
-  //   ],
-  //   responsibilities: [
-  //     "Develop adaptive adversaries",
-  //     "Neural network optimization",
-  //     "Research paper analysis",
-  //     "Implementation of RL algorithms",
-  //   ],
-  // },
-]);
-
-const { data: careers } = await useFetch<ICareerScheme[]>("/api/careers");
+const { data: careers } = await useFetch<ICareerScheme[]>(
+  "/api/careers/active",
+);
 </script>
 
 <template>
@@ -157,7 +115,7 @@ const { data: careers } = await useFetch<ICareerScheme[]>("/api/careers");
         <div v-else class="flex flex-col gap-4">
           <div
             v-for="job in careers"
-            :key="job.id"
+            :key="job.title"
             class="group rounded-2xl bg-white p-6 md:p-8 shadow-sm shadow-black/5 border border-black/5 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
           >
             <div
@@ -197,7 +155,7 @@ const { data: careers } = await useFetch<ICareerScheme[]>("/api/careers");
                     Focus
                   </p>
                   <p class="text-sm font-bold text-black">
-                    {{ job.requirements[0] }}
+                    {{ job.requirements?.[0] }}
                   </p>
                 </div>
               </div>

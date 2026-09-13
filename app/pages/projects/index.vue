@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import MaxWidthWrapper from "~/wrappers/MaxWidthWrapper.vue";
+import type { IProjectScheme } from "~~/types/project";
 
 useSeoMeta({
   title: "Thanka Digital - Projects",

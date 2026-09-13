@@ -12,7 +12,7 @@ useSeoMeta({
   title: "Dashboard - New Career",
 });
 
-const form = ref<ICareerScheme>({
+const form = ref<Omit<ICareerScheme, "_id">>({
   title: "",
   experience: "",
   requirements: [],

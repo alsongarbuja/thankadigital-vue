@@ -6,6 +6,10 @@ definePageMeta({
   layout: false,
 });
 
+useSeoMeta({
+  title: "Dashboard - Messages",
+});
+
 const search = ref("");
 const messages = ref([
   { id: 1, name: "Adversary AI", status: "Live" },
@@ -13,7 +17,9 @@ const messages = ref([
 ]);
 
 const filtered = computed(() =>
-  messages.value.filter((p) => p.name.toLowerCase().includes(search.value.toLowerCase()))
+  messages.value.filter((p) =>
+    p.name.toLowerCase().includes(search.value.toLowerCase()),
+  ),
 );
 </script>
 
@@ -22,7 +28,6 @@ const filtered = computed(() =>
     title="Messages"
     resource-label="Message"
     description="Every message shown on the public site."
-    create-to="/app/messages/new"
     :item-count="messages.length"
     v-model:search="search"
     :is-empty="filtered.length === 0"

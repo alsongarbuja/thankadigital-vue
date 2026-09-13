@@ -12,12 +12,12 @@ useSeoMeta({
   title: "Dashboard - New User",
 });
 
-const form = ref<IUserScheme>({
+const form = ref<Omit<IUserScheme, "_id">>({
   name: "",
   email: "",
   avatarUrl: "",
   isLoggable: false,
-  passPin: 0,
+  passPin: "",
   teamId: "",
 });
 

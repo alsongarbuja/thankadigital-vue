@@ -1,7 +1,13 @@
 <script setup lang="ts">
+import type { ITeamScheme } from "~~/types/team";
 import type { IUserScheme } from "~~/types/user";
 
-const form = defineModel<IUserScheme>({ required: true });
+const form = defineModel<Omit<IUserScheme, "_id">>({ required: true });
+
+const { data: teams, pending: teamsPending } = await useFetch<ITeamScheme[]>(
+  "/api/teams",
+  { default: () => [] },
+);
 </script>
 
 <template>
@@ -19,17 +25,52 @@ const form = defineModel<IUserScheme>({ required: true });
       type="email"
       placeholder="name@thankadigital.com"
     />
-    <InputField
-      name="teamId"
-      v-model="form.teamId"
-      label="Team ID"
-      placeholder="e.g. team_engineering"
-    />
+    <div class="flex flex-col gap-1.5">
+      <label
+        class="text-xs font-semibold uppercase tracking-wide text-black/40 px-1"
+      >
+        Team
+      </label>
+      <div class="relative">
+        <select
+          v-model="form.teamId"
+          :disabled="teamsPending || teams.length === 0"
+          class="w-full appearance-none bg-black/3 rounded-xl pl-4 pr-10 py-3.5 text-sm outline-none focus:bg-primary-blue/5 focus:ring-2 focus:ring-primary-blue/20 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          <option value="" disabled>
+            {{
+              teamsPending
+                ? "Loading teams..."
+                : teams.length === 0
+                  ? "No teams available"
+                  : "Select a team"
+            }}
+          </option>
+          <option v-for="team in teams" :key="team._id" :value="team._id">
+            {{ team.name }}
+          </option>
+        </select>
+        <span
+          class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-black/30"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-4 h-4"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </span>
+      </div>
+    </div>
 
     <InputField
       name="passPin"
-      :model-value="String(form.passPin || '')"
-      @update:model-value="form.passPin = Number($event) || 0"
+      v-model="form.passPin"
       label="PIN"
       type="password"
       inputmode="numeric"
@@ -45,7 +86,7 @@ const form = defineModel<IUserScheme>({ required: true });
       </label>
       <div class="flex items-center gap-3">
         <div
-          class="w-11 h-11 rounded-full bg-black/[0.04] overflow-hidden shrink-0 flex items-center justify-center"
+          class="w-11 h-11 rounded-full bg-black/4 overflow-hidden shrink-0 flex items-center justify-center"
         >
           <img
             v-if="form.avatarUrl"
@@ -71,14 +112,14 @@ const form = defineModel<IUserScheme>({ required: true });
           v-model="form.avatarUrl"
           type="text"
           placeholder="https://..."
-          class="flex-1 bg-black/[0.03] rounded-xl px-4 py-3.5 text-sm outline-none focus:bg-primary-blue/5 focus:ring-2 focus:ring-primary-blue/20 transition-all duration-300"
+          class="flex-1 bg-black/3 rounded-xl px-4 py-3.5 text-sm outline-none focus:bg-primary-blue/5 focus:ring-2 focus:ring-primary-blue/20 transition-all duration-300"
         />
       </div>
     </div>
 
     <!-- Loggable toggle -->
     <div
-      class="md:col-span-2 lg:col-span-3 flex items-center justify-between gap-4 rounded-xl bg-black/[0.03] px-5 py-4"
+      class="md:col-span-2 lg:col-span-3 flex items-center justify-between gap-4 rounded-xl bg-black/3 px-5 py-4"
     >
       <div>
         <p class="text-sm font-bold text-black">Allow Login</p>

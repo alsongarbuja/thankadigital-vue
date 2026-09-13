@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import ListWrapper from "~/components/wrappers/ListWrapper.vue";
-import type { ICareerDocument } from "~~/server/models/career.model";
+import type { ICareerScheme } from "~~/types/career";
 
 definePageMeta({
   layout: false,
@@ -17,7 +17,7 @@ const {
   data: careers,
   pending,
   refresh,
-} = await useFetch<ICareerDocument[]>("/api/careers", { default: () => [] });
+} = await useFetch<ICareerScheme[]>("/api/careers", { default: () => [] });
 
 const filtered = computed(() =>
   careers.value.filter((c) =>
@@ -25,7 +25,7 @@ const filtered = computed(() =>
   ),
 );
 
-const deleteTarget = ref<ICareerDocument | null>(null);
+const deleteTarget = ref<ICareerScheme | null>(null);
 
 const resolveDeleteUrl = (career: Record<string, any>) =>
   `/api/careers/${career._id}/delete`;

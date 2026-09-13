@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import ListWrapper from "~/components/wrappers/ListWrapper.vue";
-import type { ITeamDocument } from "~~/server/models/team.model";
+import type { ITeamScheme } from "~~/types/team";
 
 definePageMeta({
   layout: false,
@@ -17,7 +17,7 @@ const {
   data: teams,
   pending,
   refresh,
-} = await useFetch<ITeamDocument[]>("/api/teams", {
+} = await useFetch<ITeamScheme[]>("/api/teams", {
   default: () => [],
 });
 
@@ -27,7 +27,7 @@ const filtered = computed(() =>
   ),
 );
 
-const deleteTarget = ref<ITeamDocument | null>(null);
+const deleteTarget = ref<ITeamScheme | null>(null);
 
 const resolveDeleteUrl = (team: Record<string, any>) =>
   `/api/teams/${team._id}/delete`;

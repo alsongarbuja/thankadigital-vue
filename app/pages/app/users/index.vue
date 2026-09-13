@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import ListWrapper from "~/components/wrappers/ListWrapper.vue";
-import type { IUserDocument } from "~~/server/models/users.model";
+import type { IUserScheme } from "~~/types/user";
 
 definePageMeta({
   layout: false,
@@ -17,7 +17,7 @@ const {
   data: users,
   pending,
   refresh,
-} = await useFetch<IUserDocument[]>("/api/users", {
+} = await useFetch<IUserScheme[]>("/api/users", {
   default: () => [],
 });
 
@@ -27,7 +27,7 @@ const filtered = computed(() =>
   ),
 );
 
-const deleteTarget = ref<IUserDocument | null>(null);
+const deleteTarget = ref<IUserScheme | null>(null);
 
 const resolveDeleteUrl = (user: Record<string, any>) =>
   `/api/users/${user._id}/delete`;

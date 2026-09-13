@@ -21,7 +21,7 @@ const {
   refresh,
 } = await useFetch<ICareerScheme>(`/api/careers/${id.value}`);
 
-const form = ref<ICareerScheme>({
+const form = ref<Omit<ICareerScheme, "_id">>({
   title: "",
   experience: "",
   requirements: [],
