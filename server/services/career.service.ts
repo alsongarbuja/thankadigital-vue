@@ -2,7 +2,7 @@ import { ICareerScheme } from "~~/types/career";
 import { CareerModel } from "../models/career.model";
 import { connectDB } from "../utils/db";
 
-export type CreateCareerInput = ICareerScheme;
+export type CreateCareerInput = Partial<ICareerScheme>;
 export type EditCareerInput = Partial<ICareerScheme>;
 
 export const getAllCareers = async () => {

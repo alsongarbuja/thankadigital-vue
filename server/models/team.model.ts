@@ -3,7 +3,7 @@ import type { ITeamScheme } from "~~/types/team";
 
 const { Schema, model, models } = mongoose;
 
-export interface ITeamDocument extends ITeamScheme, Document {
+export interface ITeamDocument extends Omit<ITeamScheme, "_id">, Document {
   createdAt: Date;
   updatedAt: Date;
 }

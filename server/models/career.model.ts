@@ -3,7 +3,7 @@ import type { ICareerScheme } from "~~/types/career";
 
 const { Schema, model, models } = mongoose;
 
-export interface ICareerDocument extends ICareerScheme, Document {
+export interface ICareerDocument extends Omit<ICareerScheme, "_id">, Document {
   createdAt: Date;
   updatedAt: Date;
 }
