@@ -31,7 +31,7 @@ const handleLogin = async () => {
     });
     const { fetch: refreshSession } = useUserSession();
     await refreshSession();
-    navigateTo("/admin");
+    navigateTo("/app/admin");
   } catch (err: any) {
     error.value = err?.data?.statusMessage ?? "Invalid credentials.";
   } finally {

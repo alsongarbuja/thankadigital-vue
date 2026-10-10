@@ -17,20 +17,20 @@ const userInitials = computed(() => {
 const handleLogout = async () => {
   await $fetch("/api/logout", { method: "POST" });
   await clearSession();
-  navigateTo("/login");
+  navigateTo("/");
 };
 
 const navItems = [
-  { label: "Dashboard", to: "/admin", icon: "grid" },
+  { label: "Dashboard", to: "/app/admin", icon: "grid" },
   { label: "Projects", to: "/app/projects", icon: "layers" },
-  { label: "Blogs", to: "/admin/blogs", icon: "document" },
-  { label: "Careers", to: "/admin/careers", icon: "users" },
-  { label: "Messages", to: "/admin/messages", icon: "mail" },
-  { label: "Settings", to: "/admin/settings", icon: "gear" },
+  { label: "Blogs", to: "/app/blogs", icon: "document" },
+  { label: "Careers", to: "/app/careers", icon: "users" },
+  { label: "Users", to: "/app/users", icon: "users" },
+  { label: "Teams", to: "/app/teams", icon: "mail" },
 ];
 
 const isActive = (to: string) => {
-  if (to === "/admin") return route.path === "/admin";
+  if (to === "/app/admin") return route.path === "/app/admin";
   return route.path === to || route.path.startsWith(`${to}/`);
 };
 
@@ -168,9 +168,15 @@ const closeSidebar = () => {
       <div class="mt-auto flex flex-col gap-3">
         <div
           class="rounded-2xl bg-primary-blue/5 border border-primary-blue/10 p-4 flex items-center gap-3"
-        >
+          >
+          <NuxtImg
+            v-if="user?.avatarUrl"
+            :src="user.avatarUrl"
+            class="w-10 h-10 rounded-full object-cover shrink-0"
+          />
           <span
-            class="w-9 h-9 rounded-full bg-primary-blue text-white flex items-center justify-center text-xs font-bold shrink-0"
+            v-else
+            class="w-10 h-10 rounded-full bg-primary-blue text-white flex items-center justify-center text-sm font-bold shrink-0"
           >
             {{ userInitials }}
           </span>
@@ -362,8 +368,14 @@ const closeSidebar = () => {
             ></span>
           </button>
 
+          <NuxtImg
+            v-if="user?.avatarUrl"
+            :src="user.avatarUrl"
+            class="w-10 h-10 rounded-full object-cover shrink-0"
+          />
           <span
-            class="w-9 h-9 rounded-full bg-primary-blue text-white flex items-center justify-center text-xs font-bold shrink-0"
+            v-else
+            class="w-10 h-10 rounded-full bg-primary-blue text-white flex items-center justify-center text-sm font-bold shrink-0"
           >
             {{ userInitials }}
           </span>

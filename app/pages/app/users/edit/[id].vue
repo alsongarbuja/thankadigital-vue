@@ -36,6 +36,7 @@ watch(
     if (user) {
       form.value = {
         ...user,
+        passPin: "",
       };
     }
   },
